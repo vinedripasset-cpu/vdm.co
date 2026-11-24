@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<!--
+  ═══════════════════════════════════════════════════════════════════
+  VINEDRIP — LINK IN BIO (BASE HTML)
+  ───────────────────────────────────────────────────────────────────
+  CARA EDIT — buka file ini, lalu ubah bagian yang ditandai "MULAI EDIT":
+
+  1) GAMBAR  → tempel link gambarmu di antara tanda kutip
+               • logo    : gambar persegi, otomatis dipotong jadi lingkaran 300x300 px
+               • banner1/2/3 : gambar landscape, saran 1200 x 600 px
+
+  2) TEKS    → ganti nama, handle, dan bio
+
+  3) LINK    → ganti "url", "judul", "deskripsi"
+               pilihan ikon: "shopee" | "tiktok" | "instagram" | "link"
+
+  Kalau gambar belum diganti, halaman tetap tampil pakai gambar contoh
+  yang sudah terpasang (tidak akan rusak).
+
+  Simpan file → refresh browser. Selesai.
+  ═══════════════════════════════════════════════════════════════════
+-->
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>VINEDRIP — Official Links</title>
+<meta name="description" content="VINEDRIP Official — Shopee, TikTok Shop, dan Instagram @vdm.co" />
+<meta name="theme-color" content="#050505" />
+
+<style>
+  /* ════════════════════════════════════════════════════════════
+     TEMA HITAM — PUTIH  (ubah variabel di bawah untuk ganti warna)
+     ════════════════════════════════════════════════════════════ */
+  :root{
+    --hitam:      #050505;
+    --hitam-2:    #0d0d0d;
+    --putih:      #ffffff;
+    --abu:        rgba(255,255,255,.62);
+    --garis:      rgba(255,255,255,.16);
+    --radius:     16px;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html{ scroll-behavior:smooth; overflow-x:clip; }
+
+  body{
+    min-height:100vh;
+    background:var(--hitam);
+    color:var(--putih);
+    font-family:"Helvetica Neue", Helvetica, Inter, system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    display:flex;
+    justify-content:center;
+    padding:clamp(24px, 5vw, 64px) 20px 40px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* ---------- background dekoratif ---------- */
+  .bg{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background:
+      radial-gradient(60% 40% at 50% -5%, rgba(255,255,255,.10), transparent 70%),
+      radial-gradient(40% 30% at 100% 100%, rgba(255,255,255,.04), transparent 70%);
+  }
+  .bg::after{
+    content:""; position:absolute; inset:0;
+    background-image:
+      linear-gradient(rgba(255,255,255,.030) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,.030) 1px, transparent 1px);
+    background-size:64px 64px;
+    -webkit-mask-image:radial-gradient(75% 55% at 50% 0%, #000 0%, transparent 100%);
+            mask-image:radial-gradient(75% 55% at 50% 0%, #000 0%, transparent 100%);
+  }
+  .bg::before{
+    content:""; position:absolute; inset:0;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3'/></filter><rect width='160' height='160' filter='url(%23n)' opacity='.35'/></svg>");
+    opacity:.055; mix-blend-mode:screen;
+  }
+
+  .page{
+    position:relative; z-index:1;
+    width:100%; max-width:560px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+
+  /* ══════════════ LOGO (300 x 300 px, bentuk lingkaran) ══════════════ */
+  .logo-wrap{
+    position:relative;
+    width:300px; height:300px;
+    margin:0 auto 26px;
+    flex:0 0 auto;
+  }
+  .logo-wrap::before{
+    content:""; position:absolute; inset:-12px; border-radius:50%;
+    border:1px solid rgba(255,255,255,.14);
+    transition:border-color .4s ease, transform .6s ease;
+  }
+  .logo-wrap::after{
+    content:""; position:absolute; inset:-26px; border-radius:50%;
+    border:1px dashed rgba(255,255,255,.10);
+    animation:putar 40s linear infinite;
+  }
+  @keyframes putar{ to{ transform:rotate(360deg); } }
+
+  .logo{
+    width:300px; height:300px;
+    border-radius:50%;
+    object-fit:cover;
+    display:block;
+    border:1px solid rgba(255,255,255,.30);
+    box-shadow:0 0 0 6px rgba(255,255,255,.03), 0 24px 60px -20px rgba(0,0,0,.9);
+    background:var(--hitam-2);
+    transition:transform .5s cubic-bezier(.2,.8,.2,1);
+  }
+  .logo-wrap:hover .logo{ transform:scale(1.03); }
+  .logo-wrap:hover::before{ border-color:rgba(255,255,255,.45); }
+
+  /* logo 300px tetap dipakai di HP; hanya mengecil di layar sangat sempit */
+  @media (max-width:360px){
+    .logo-wrap{ width:240px; height:240px; }
+    .logo{ width:240px; height:240px; }
+  }
+
+  /* ══════════════ IDENTITAS ══════════════ */
+  .nama{
+    font-size:clamp(26px, 7vw, 36px);
+    font-weight:800;
+    letter-spacing:.16em;
+    text-transform:uppercase;
+    text-align:center;
+    line-height:1.1;
+  }
+  .handle{
+    margin-top:10px;
+    font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size:11px;
+    letter-spacing:.32em;
+    text-transform:uppercase;
+    color:var(--abu);
+    text-align:center;
+  }
+  .bio{
+    margin:16px auto 0;
+    max-width:400px;
+    font-size:13.5px;
+    line-height:1.75;
+    color:var(--abu);
+    text-align:center;
+    text-wrap:balance;
+  }
+  .pemisah{
+    width:38px; height:1px;
+    background:rgba(255,255,255,.35);
+    margin:22px auto 0;
+  }
+
+  /* ══════════════ BANNER CAROUSEL (3 slide, landscape) ══════════════ */
+  .banner{
+    position:relative;
+    width:100%;
+    aspect-ratio:2 / 1;          /* landscape */
+    margin:26px 0 14px;
+    border:1px solid var(--garis);
+    border-radius:var(--radius);
+    overflow:hidden;
+    background:var(--hitam-2);
+    box-shadow:0 30px 70px -35px rgba(0,0,0,.95);
+    user-select:none;
+    touch-action:pan-y;
+  }
+
+  .slide{
+    position:absolute; inset:0;
+    opacity:0;
+    transition:opacity .75s cubic-bezier(.4,0,.2,1);
+    pointer-events:none;
+    display:block;
+    color:inherit;
+    text-decoration:none;
+  }
+  .slide.aktif{ opacity:1; pointer-events:auto; }
+
+  .slide img{
+    position:relative; z-index:1;
+    width:100%; height:100%;
+    object-fit:cover;
+    display:block;
+    -webkit-user-drag:none;
+  }
+
+  /* gradient gelap hanya dipakai kalau slide punya caption (agar teks terbaca) */
+  .slide::after{ content:none; }
+  .slide.punya-cap::after{
+    content:""; position:absolute; inset:0; z-index:2;
+    background:linear-gradient(to top, rgba(0,0,0,.78), transparent 62%);
+    pointer-events:none;
+  }
+
+  .slide .cap{
+    position:absolute; left:18px; right:18px; bottom:34px; z-index:3;
+  }
+  .slide .cap h3{
+    font-size:clamp(16px, 4vw, 21px);
+    font-weight:800; letter-spacing:.06em; text-transform:uppercase;
+  }
+  .slide .cap p{
+    margin-top:5px; font-size:12px; letter-spacing:.04em;
+    color:rgba(255,255,255,.78);
+  }
+
+  /* tombol panah — muncul saat banner di-hover / fokus keyboard */
+  .nav{
+    position:absolute; top:50%; transform:translateY(-50%) scale(.9); z-index:5;
+    width:36px; height:36px; border-radius:50%;
+    display:grid; place-items:center;
+    background:rgba(5,5,5,.55);
+    border:1px solid rgba(255,255,255,.22);
+    color:#fff; cursor:pointer;
+    backdrop-filter:blur(8px);
+    -webkit-backdrop-filter:blur(8px);
+    opacity:0;
+    transition:background .25s ease, color .25s ease, border-color .25s ease,
+               opacity .3s ease, transform .3s ease;
+  }
+  .banner:hover .nav,
+  .banner:focus-within .nav{ opacity:1; transform:translateY(-50%) scale(1); }
+  .nav:hover{ background:#fff; color:#000; border-color:#fff; }
+  .nav.prev{ left:12px; }
+  .nav.next{ right:12px; }
+  .nav svg{ width:16px; height:16px; }
+
+  /* di layar sentuh panah disembunyikan — pakai swipe / titik */
+  @media (hover:none){
+    .nav{ display:none; }
+  }
+
+  /* titik navigasi — pill mengambang, terbaca di banner terang & gelap */
+  .dots{
+    position:absolute; left:50%; bottom:12px; transform:translateX(-50%); z-index:5;
+    display:flex; align-items:center; gap:8px;
+    padding:7px 11px; border-radius:99px;
+    background:rgba(8,8,8,.50);
+    border:1px solid rgba(255,255,255,.14);
+    backdrop-filter:blur(10px);
+    -webkit-backdrop-filter:blur(10px);
+  }
+  .dot{
+    width:6px; height:6px; border-radius:99px;
+    background:rgba(255,255,255,.42);
+    border:0; cursor:pointer; padding:0;
+    transition:width .35s ease, background .35s ease;
+  }
+  .dot.on{ width:22px; background:#fff; }
+
+  /* ══════════════ DAFTAR LINK ══════════════ */
+  .links{
+    width:100%;
+    display:flex; flex-direction:column; gap:12px;
+    margin-top:14px;
+  }
+
+  .link{
+    display:flex; align-items:center; gap:14px;
+    padding:15px 18px;
+    border:1px solid var(--garis);
+    border-radius:var(--radius);
+    background:rgba(255,255,255,.030);
+    color:var(--putih);
+    text-decoration:none;
+    transition:transform .28s cubic-bezier(.2,.8,.2,1),
+               background .28s ease,
+               color .28s ease,
+               border-color .28s ease,
+               box-shadow .28s ease;
+    animation:muncul .6s cubic-bezier(.2,.8,.2,1) both;
+  }
+  @keyframes muncul{
+    from{ opacity:0; transform:translateY(14px); }
+    to  { opacity:1; transform:translateY(0); }
+  }
+  .link:hover{
+    background:var(--putih);
+    color:#000;
+    border-color:var(--putih);
+    transform:translateY(-3px);
+    box-shadow:0 18px 40px -22px rgba(255,255,255,.35);
+  }
+
+  .ico{
+    flex:0 0 auto;
+    width:42px; height:42px; border-radius:12px;
+    display:grid; place-items:center;
+    background:rgba(255,255,255,.07);
+    border:1px solid rgba(255,255,255,.12);
+    transition:background .28s ease, border-color .28s ease;
+  }
+  .ico svg{ width:20px; height:20px; }
+  .link:hover .ico{ background:#000; border-color:#000; }
+
+  .txt{ display:flex; flex-direction:column; gap:3px; min-width:0; flex:1; }
+  .label{
+    font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size:9.5px; letter-spacing:.28em; text-transform:uppercase;
+    color:var(--abu);
+    transition:color .28s ease;
+  }
+  .link:hover .label{ color:rgba(0,0,0,.55); }
+  .title{
+    font-size:15px; font-weight:700; letter-spacing:.01em;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .desc{
+    font-size:12.5px; line-height:1.5; color:var(--abu);
+    transition:color .28s ease;
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
+  }
+  .link:hover .desc{ color:rgba(0,0,0,.60); }
+
+  .arrow{
+    flex:0 0 auto;
+    opacity:.55;
+    transition:opacity .28s ease, transform .28s ease;
+  }
+  .arrow svg{ width:18px; height:18px; display:block; }
+  .link:hover .arrow{ opacity:1; transform:translate(2px,-2px); }
+
+  /* ══════════════ FOOTER ══════════════ */
+  .foot{
+    margin-top:34px;
+    font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size:10px; letter-spacing:.24em; text-transform:uppercase;
+    color:rgba(255,255,255,.34);
+    text-align:center; line-height:2;
+  }
+  .foot a{ color:rgba(255,255,255,.55); text-decoration:none; }
+  .foot a:hover{ color:#fff; }
+
+  @media (max-width:420px){
+    .link{ padding:14px 15px; gap:12px; }
+    .desc{ white-space:normal; }
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{ animation:none !important; transition-duration:.01ms !important; }
+  }
+</style>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   ✏️  MULAI EDIT DARI SINI
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── 1) GAMBAR — tempel link gambarmu di antara tanda kutip ──────────
+   • logo     : gambar persegi (dipotong otomatis jadi lingkaran 300x300)
+   • banner1-3: gambar landscape, saran ukuran 1200 x 600 px
+   Boleh pakai URL https://... atau nama file di folder yang sama.
+   Dibiarkan kosong ("") = halaman tetap tampil pakai gambar contoh.     */
+const GAMBAR = {
+  logo:    "https://i.postimg.cc/c4QDD8St/Logo-Rocket.png",   // ← GANTI : link logo kamu
+  banner1: "https://i.postimg.cc/xjKfPtcC/Button-Marketplace-Banner.png",   // ← GANTI : link banner slide 1
+  banner2: "https://i.postimg.cc/0jZhBMgP/Fresco-Fireman-SG-Marketplace-Banner.png",   // ← GANTI : link banner slide 2
+  banner3: "https://i.postimg.cc/76kcPMwh/Motel-Marketplace-Banner.png"    // ← GANTI : link banner slide 3
+};
+
+/* ── 2) IDENTITAS ──────────────────────────────────────────────────── */
+const KONFIG = {
+
+  nama:    "VINEDRIP",
+  handle:  "@vdm.co",
+  bio:     "Official store Vinedrip. Semua produk resmi hanya tersedia melalui link di bawah ini — hati-hati terhadap akun palsu.",
+
+  /* ── 3) BANNER — 3 SLIDE ────────────────────────────────────────────
+     "judul" & "teks" opsional (kosongkan "" jika gambar sudah ada tulisan)
+     "link"   : tujuan saat banner di-klik (boleh dikosongkan "")        */
+  banner: [
+    { gambar: GAMBAR.banner1, judul: "", teks: "", link: "https://shopee.co.id/product/1244744320/51021696288" },
+    { gambar: GAMBAR.banner2, judul: "", teks: "", link: "https://shopee.co.id/vinedripmasterpiece-Fresco-Fireman-SG-Coffee-Clogs-Sepatu-Sandal-Pria-Wanita-i.1244744320.52571997896?extraParams=%7B%22display_model_id%22%3A426759006627%2C%22model_selection_logic%22%3A3%7D&image_ids=id-11134207-81ztq-mvsdo5yuwemb16" },
+    { gambar: GAMBAR.banner3, judul: "", teks: "", link: "https://shopee.co.id/product/1244744320/54971735185" }
+  ],
+
+  /* durasi tiap slide dalam milidetik */
+  bannerDelay: 4500,
+
+  /* ── 4) DAFTAR LINK ─────────────────────────────────────────────────
+     ikon: "shopee" | "tiktok" | "instagram" | "link"                   */
+  links: [
+    {
+      ikon:      "shopee",
+      label:     "Marketplace",
+      judul:     "Shopee — Vinedrip.Official",
+      deskripsi: "Belanja semua produk resmi Vinedrip di Shopee",
+      url:       "https://shopee.co.id/vinedrip.official"
+    },
+    {
+      ikon:      "tiktok",
+      label:     "TikTok Shop",
+      judul:     "TikTok Shop — Vinedrip.Official",
+      deskripsi: "Lihat produk & live shopping di TikTok Shop",
+      url:       "https://shop.tiktok.com/@vinedrip.official"
+    },
+    {
+      ikon:      "instagram",
+      label:     "Instagram",
+      judul:     "Instagram — @vdm.co",
+      deskripsi: "Update terbaru, restock & behind the scene",
+      url:       "https://instagram.com/vdm.co"
+    }
+  ]
+};
+
+/* ══════════════════ AKHIR BAGIAN EDIT ═════════════════════════════ */
+
+
+/* ── gambar contoh bawaan — TIDAK PERLU DIUBAH ───────────────────────
+   Dipakai otomatis kalau link gambar di atas belum diganti / gagal
+   dimuat, supaya halaman tetap tampil rapi.                            */
+const CADANGAN = {
+  logo:    "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA2MDAgNjAwIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjYwMCI+CiAgPHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiMwYTBhMGEiLz4KICA8Y2lyY2xlIGN4PSIzMDAiIGN5PSIzMDAiIHI9IjI4NiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjYiLz4KICA8Y2lyY2xlIGN4PSIzMDAiIGN5PSIzMDAiIHI9IjI2NCIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMzAiLz4KICA8dGV4dCB4PSIzMDAiIHk9IjM3MiIgZm9udC1mYW1pbHk9IkhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMjIwIiBmb250LXdlaWdodD0iNzAwIgogICAgICAgIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSItNiI+VjwvdGV4dD4KICA8dGV4dCB4PSIzMDAiIHk9IjQ1MiIgZm9udC1mYW1pbHk9IkhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMzAiIGZvbnQtd2VpZ2h0PSI2MDAiCiAgICAgICAgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjE1Ij5WSU5FRFJJUDwvdGV4dD4KPC9zdmc+",
+  banner: ["data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjAwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiMwODA4MDgiLz48bGluZSB4MT0iLTU3MCIgeTE9IjYwMCIgeDI9Ii01MCIgeTI9IjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEwIi8+PGxpbmUgeDE9Ii0zODAiIHkxPSI2MDAiIHgyPSIxNDAiIHkyPSIwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4xMCIvPjxsaW5lIHgxPSItMTkwIiB5MT0iNjAwIiB4Mj0iMzMwIiB5Mj0iMCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMTAiLz48bGluZSB4MT0iMCIgeTE9IjYwMCIgeDI9IjUyMCIgeTI9IjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEwIi8+PGxpbmUgeDE9IjE5MCIgeTE9IjYwMCIgeDI9IjcxMCIgeTI9IjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEwIi8+PGxpbmUgeDE9IjM4MCIgeTE9IjYwMCIgeDI9IjkwMCIgeTI9IjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEwIi8+PGxpbmUgeDE9IjU3MCIgeTE9IjYwMCIgeDI9IjEwOTAiIHkyPSIwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4xMCIvPjxsaW5lIHgxPSI3NjAiIHkxPSI2MDAiIHgyPSIxMjgwIiB5Mj0iMCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMTAiLz48bGluZSB4MT0iOTUwIiB5MT0iNjAwIiB4Mj0iMTQ3MCIgeTI9IjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEwIi8+PGxpbmUgeDE9IjExNDAiIHkxPSI2MDAiIHgyPSIxNjYwIiB5Mj0iMCIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMTAiLz48bGluZSB4MT0iMTMzMCIgeTE9IjYwMCIgeDI9IjE4NTAiIHkyPSIwIiBzdHJva2U9IiNmZmZmZmYiIHN0cm9rZS13aWR0aD0iMSIgb3BhY2l0eT0iMC4xMCIvPjxsaW5lIHgxPSIxNTIwIiB5MT0iNjAwIiB4Mj0iMjA0MCIgeTI9IjAiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjEwIi8+CiAgPGNpcmNsZSBjeD0iOTg1IiBjeT0iMTUwIiByPSIxMTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIyIiBvcGFjaXR5PSIwLjQ1Ii8+CiAgPGNpcmNsZSBjeD0iOTg1IiBjeT0iMTUwIiByPSIxNTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxIiBvcGFjaXR5PSIwLjE4Ii8+CiAgPHRleHQgeD0iMTEyIiB5PSIzMDAiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyNiIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZmZmZiIgbGV0dGVyLXNwYWNpbmc9Ii01Ij5ORVc8L3RleHQ+CiAgPHRleHQgeD0iMTEyIiB5PSI0MjgiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjEyNiIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2ZmZmZmZiIgbGV0dGVyLXNwYWNpbmc9Ii01Ij5EUk9QPC90ZXh0PgogIDx0ZXh0IHg9IjExNiIgeT0iNDc4IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMSIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2ZmZmZmZiIgbGV0dGVyLXNwYWNpbmc9IjkiIG9wYWNpdHk9IjAuNjUiPlZJTkVEUklQIE9GRklDSUFMIOKAlCAwMDE8L3RleHQ+Cjwvc3ZnPg==", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjAwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiNmMmYyZjIiLz4KICA8Y2lyY2xlIGN4PSI2MDAiIGN5PSIzMDAiIHI9IjIxMiIgZmlsbD0iIzBhMGEwYSIvPgogIDx0ZXh0IHg9IjYwMCIgeT0iMzIyIiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSI3NiIgZm9udC13ZWlnaHQ9IjgwMCIgZmlsbD0iI2YyZjJmMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjEiPlZJTkVEUklQPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iMzgyIiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIyMCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2YyZjJmMiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjEwIiBvcGFjaXR5PSIwLjcyIj5PRkZJQ0lBTCBTVE9SRTwvdGV4dD4KICA8dGV4dCB4PSI3NCIgeT0iODYiIGZvbnQtZmFtaWx5PSJIZWx2ZXRpY2EsIEFyaWFsLCBzYW5zLXNlcmlmIiBmb250LXNpemU9IjE3IiBmb250LXdlaWdodD0iNjAwIiBmaWxsPSIjMGEwYTBhIiBsZXR0ZXItc3BhY2luZz0iNyI+RVNULiAyMDI2PC90ZXh0PgogIDx0ZXh0IHg9IjExMjYiIHk9Ijg2IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNyIgZm9udC13ZWlnaHQ9IjYwMCIgZmlsbD0iIzBhMGEwYSIgbGV0dGVyLXNwYWNpbmc9IjciIHRleHQtYW5jaG9yPSJlbmQiPklEIC8gMDI8L3RleHQ+CiAgPGxpbmUgeDE9Ijc0IiB5MT0iNTMwIiB4Mj0iMTEyNiIgeTI9IjUzMCIgc3Ryb2tlPSIjMGEwYTBhIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMzUiLz4KPC9zdmc+", "data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAxMjAwIDYwMCIgd2lkdGg9IjEyMDAiIGhlaWdodD0iNjAwIj4KICA8cmVjdCB3aWR0aD0iMTIwMCIgaGVpZ2h0PSI2MDAiIGZpbGw9IiMwODA4MDgiLz48Y2lyY2xlIGN4PSIxNTgiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDAiLz48Y2lyY2xlIGN4PSIyMjIiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTEiLz48Y2lyY2xlIGN4PSIyODYiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjAiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjkiLz48Y2lyY2xlIGN4PSI0MTQiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzciLz48Y2lyY2xlIGN4PSI0NzgiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODMiLz48Y2lyY2xlIGN4PSI1NDIiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODciLz48Y2lyY2xlIGN4PSI2MDYiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODgiLz48Y2lyY2xlIGN4PSI2NzAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODYiLz48Y2lyY2xlIGN4PSI3MzQiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODIiLz48Y2lyY2xlIGN4PSI3OTgiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzYiLz48Y2lyY2xlIGN4PSI4NjIiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjgiLz48Y2lyY2xlIGN4PSI5MjYiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTkiLz48Y2lyY2xlIGN4PSI5OTAiIGN5PSIzMCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDkiLz48Y2lyY2xlIGN4PSIxMDU0IiBjeT0iMzAiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDM4Ii8+PGNpcmNsZSBjeD0iOTQiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wMzUiLz48Y2lyY2xlIGN4PSIxNTgiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDYiLz48Y2lyY2xlIGN4PSIyMjIiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTciLz48Y2lyY2xlIGN4PSIyODYiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjgiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzgiLz48Y2lyY2xlIGN4PSI0MTQiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODciLz48Y2lyY2xlIGN4PSI0NzgiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wOTQiLz48Y2lyY2xlIGN4PSI3MzQiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wOTMiLz48Y2lyY2xlIGN4PSI3OTgiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODUiLz48Y2lyY2xlIGN4PSI4NjIiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzYiLz48Y2lyY2xlIGN4PSI5MjYiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjYiLz48Y2lyY2xlIGN4PSI5OTAiIGN5PSI5NCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTUiLz48Y2lyY2xlIGN4PSIxMDU0IiBjeT0iOTQiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQ0Ii8+PGNpcmNsZSBjeD0iMTExOCIgY3k9Ijk0IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjAzMyIvPjxjaXJjbGUgY3g9Ijk0IiBjeT0iMTU4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjAzOSIvPjxjaXJjbGUgY3g9IjE1OCIgY3k9IjE1OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTEiLz48Y2lyY2xlIGN4PSIyMjIiIGN5PSIxNTgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDYyIi8+PGNpcmNsZSBjeD0iMjg2IiBjeT0iMTU4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA3NCIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjE1OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODUiLz48Y2lyY2xlIGN4PSI0MTQiIGN5PSIxNTgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDk1Ii8+PGNpcmNsZSBjeD0iNzk4IiBjeT0iMTU4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA5MyIvPjxjaXJjbGUgY3g9Ijg2MiIgY3k9IjE1OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODMiLz48Y2lyY2xlIGN4PSI5MjYiIGN5PSIxNTgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDcyIi8+PGNpcmNsZSBjeD0iOTkwIiBjeT0iMTU4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA2MCIvPjxjaXJjbGUgY3g9IjEwNTQiIGN5PSIxNTgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQ5Ii8+PGNpcmNsZSBjeD0iMTExOCIgY3k9IjE1OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wMzciLz48Y2lyY2xlIGN4PSI5NCIgY3k9IjIyMiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDIiLz48Y2lyY2xlIGN4PSIxNTgiIGN5PSIyMjIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDU0Ii8+PGNpcmNsZSBjeD0iMjIyIiBjeT0iMjIyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA2NiIvPjxjaXJjbGUgY3g9IjI4NiIgY3k9IjIyMiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzgiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSIyMjIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDkwIi8+PGNpcmNsZSBjeD0iODYyIiBjeT0iMjIyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4NyIvPjxjaXJjbGUgY3g9IjkyNiIgY3k9IjIyMiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzYiLz48Y2lyY2xlIGN4PSI5OTAiIGN5PSIyMjIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDY0Ii8+PGNpcmNsZSBjeD0iMTA1NCIgY3k9IjIyMiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTEiLz48Y2lyY2xlIGN4PSIxMTE4IiBjeT0iMjIyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjAzOSIvPjxjaXJjbGUgY3g9Ijk0IiBjeT0iMjg2IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA0MyIvPjxjaXJjbGUgY3g9IjE1OCIgY3k9IjI4NiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTUiLz48Y2lyY2xlIGN4PSIyMjIiIGN5PSIyODYiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDY3Ii8+PGNpcmNsZSBjeD0iMjg2IiBjeT0iMjg2IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4MCIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjI4NiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wOTIiLz48Y2lyY2xlIGN4PSI4NjIiIGN5PSIyODYiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDkwIi8+PGNpcmNsZSBjeD0iOTI2IiBjeT0iMjg2IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA3NyIvPjxjaXJjbGUgY3g9Ijk5MCIgY3k9IjI4NiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjUiLz48Y2lyY2xlIGN4PSIxMDU0IiBjeT0iMjg2IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1MyIvPjxjaXJjbGUgY3g9IjExMTgiIGN5PSIyODYiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQwIi8+PGNpcmNsZSBjeD0iOTQiIGN5PSIzNTAiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQyIi8+PGNpcmNsZSBjeD0iMTU4IiBjeT0iMzUwIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1NCIvPjxjaXJjbGUgY3g9IjIyMiIgY3k9IjM1MCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjciLz48Y2lyY2xlIGN4PSIyODYiIGN5PSIzNTAiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDc5Ii8+PGNpcmNsZSBjeD0iMzUwIiBjeT0iMzUwIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA5MSIvPjxjaXJjbGUgY3g9Ijg2MiIgY3k9IjM1MCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODkiLz48Y2lyY2xlIGN4PSI5MjYiIGN5PSIzNTAiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDc3Ii8+PGNpcmNsZSBjeD0iOTkwIiBjeT0iMzUwIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA2NCIvPjxjaXJjbGUgY3g9IjEwNTQiIGN5PSIzNTAiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDUyIi8+PGNpcmNsZSBjeD0iMTExOCIgY3k9IjM1MCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDAiLz48Y2lyY2xlIGN4PSI5NCIgY3k9IjQxNCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDAiLz48Y2lyY2xlIGN4PSIxNTgiIGN5PSI0MTQiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDUyIi8+PGNpcmNsZSBjeD0iMjIyIiBjeT0iNDE0IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA2NCIvPjxjaXJjbGUgY3g9IjI4NiIgY3k9IjQxNCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzYiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSI0MTQiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDg3Ii8+PGNpcmNsZSBjeD0iODYyIiBjeT0iNDE0IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4NSIvPjxjaXJjbGUgY3g9IjkyNiIgY3k9IjQxNCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzQiLz48Y2lyY2xlIGN4PSI5OTAiIGN5PSI0MTQiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDYyIi8+PGNpcmNsZSBjeD0iMTA1NCIgY3k9IjQxNCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNTAiLz48Y2lyY2xlIGN4PSIxMTE4IiBjeT0iNDE0IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjAzOCIvPjxjaXJjbGUgY3g9Ijk0IiBjeT0iNDc4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjAzNyIvPjxjaXJjbGUgY3g9IjE1OCIgY3k9IjQ3OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNDgiLz48Y2lyY2xlIGN4PSIyMjIiIGN5PSI0NzgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDYwIi8+PGNpcmNsZSBjeD0iMjg2IiBjeT0iNDc4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA3MSIvPjxjaXJjbGUgY3g9IjM1MCIgY3k9IjQ3OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODEiLz48Y2lyY2xlIGN4PSI0MTQiIGN5PSI0NzgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDkwIi8+PGNpcmNsZSBjeD0iNzk4IiBjeT0iNDc4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4OSIvPjxjaXJjbGUgY3g9Ijg2MiIgY3k9IjQ3OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzkiLz48Y2lyY2xlIGN4PSI5MjYiIGN5PSI0NzgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDY5Ii8+PGNpcmNsZSBjeD0iOTkwIiBjeT0iNDc4IiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1OCIvPjxjaXJjbGUgY3g9IjEwNTQiIGN5PSI0NzgiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQ2Ii8+PGNpcmNsZSBjeD0iMTExOCIgY3k9IjQ3OCIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wMzUiLz48Y2lyY2xlIGN4PSIxNTgiIGN5PSI1NDIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQzIi8+PGNpcmNsZSBjeD0iMjIyIiBjeT0iNTQyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1NCIvPjxjaXJjbGUgY3g9IjI4NiIgY3k9IjU0MiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNjQiLz48Y2lyY2xlIGN4PSIzNTAiIGN5PSI1NDIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDczIi8+PGNpcmNsZSBjeD0iNDE0IiBjeT0iNTQyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4MSIvPjxjaXJjbGUgY3g9IjQ3OCIgY3k9IjU0MiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wODgiLz48Y2lyY2xlIGN4PSI1NDIiIGN5PSI1NDIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDkyIi8+PGNpcmNsZSBjeD0iNjA2IiBjeT0iNTQyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA5MyIvPjxjaXJjbGUgY3g9IjY3MCIgY3k9IjU0MiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wOTIiLz48Y2lyY2xlIGN4PSI3MzQiIGN5PSI1NDIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDg3Ii8+PGNpcmNsZSBjeD0iNzk4IiBjeT0iNTQyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA4MCIvPjxjaXJjbGUgY3g9Ijg2MiIgY3k9IjU0MiIgcj0iMyIgZmlsbD0iI2ZmZmZmZiIgb3BhY2l0eT0iMC4wNzEiLz48Y2lyY2xlIGN4PSI5MjYiIGN5PSI1NDIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDYyIi8+PGNpcmNsZSBjeD0iOTkwIiBjeT0iNTQyIiByPSIzIiBmaWxsPSIjZmZmZmZmIiBvcGFjaXR5PSIwLjA1MiIvPjxjaXJjbGUgY3g9IjEwNTQiIGN5PSI1NDIiIHI9IjMiIGZpbGw9IiNmZmZmZmYiIG9wYWNpdHk9IjAuMDQxIi8+CiAgPGNpcmNsZSBjeD0iNjAwIiBjeT0iMzAwIiByPSIxOTgiIGZpbGw9Im5vbmUiIHN0cm9rZT0iI2ZmZmZmZiIgc3Ryb2tlLXdpZHRoPSIxLjUiLz4KICA8Y2lyY2xlIGN4PSI2MDAiIGN5PSIzMDAiIHI9IjIxMiIgZmlsbD0ibm9uZSIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utd2lkdGg9IjEiIG9wYWNpdHk9IjAuMjIiLz4KICA8dGV4dCB4PSI2MDAiIHk9IjI4OCIgZm9udC1mYW1pbHk9IkhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTgiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIyIj5TSE9QIFRIRTwvdGV4dD4KICA8dGV4dCB4PSI2MDAiIHk9IjM1MiIgZm9udC1mYW1pbHk9IkhlbHZldGljYSwgQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iNTgiIGZvbnQtd2VpZ2h0PSI4MDAiIGZpbGw9IiNmZmZmZmYiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGxldHRlci1zcGFjaW5nPSIyIj5DT0xMRUNUSU9OPC90ZXh0PgogIDx0ZXh0IHg9IjYwMCIgeT0iNDI0IiBmb250LWZhbWlseT0iSGVsdmV0aWNhLCBBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxOCIgZm9udC13ZWlnaHQ9IjUwMCIgZmlsbD0iI2ZmZmZmZiIgdGV4dC1hbmNob3I9Im1pZGRsZSIgbGV0dGVyLXNwYWNpbmc9IjExIiBvcGFjaXR5PSIwLjU1Ij5UQVAgVE8gRVhQTE9SRTwvdGV4dD4KPC9zdmc+"]
+};
+</script>
+</head>
+
+<body>
+  <div class="bg" aria-hidden="true"></div>
+
+  <main class="page">
+
+    <!-- LOGO (300 x 300 px, lingkaran) -->
+    <div class="logo-wrap">
+      <img class="logo" id="logo" alt="Logo" width="300" height="300" />
+    </div>
+
+    <!-- IDENTITAS -->
+    <h1 class="nama" id="nama">VINEDRIP</h1>
+    <p class="handle" id="handle">@vdm.co</p>
+    <p class="bio" id="bio"></p>
+    <div class="pemisah" aria-hidden="true"></div>
+
+    <!-- BANNER 3 SLIDE -->
+    <section class="banner" id="banner" aria-roledescription="carousel" aria-label="Banner promosi">
+      <div class="slides" id="slides"></div>
+
+      <button class="nav prev" id="prev" type="button" aria-label="Slide sebelumnya">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M15 6l-6 6 6 6"/>
+        </svg>
+      </button>
+
+      <button class="nav next" id="next" type="button" aria-label="Slide berikutnya">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M9 6l6 6-6 6"/>
+        </svg>
+      </button>
+
+      <div class="dots" id="dots" role="tablist" aria-label="Pilih slide"></div>
+    </section>
+
+    <!-- DAFTAR LINK -->
+    <section class="links" id="links" aria-label="Daftar link resmi"></section>
+
+    <!-- FOOTER -->
+    <footer class="foot">
+      © 2026 VINEDRIP — ALL RIGHTS RESERVED<br />
+      <a href="https://instagram.com/vdm.co" target="_blank" rel="noopener noreferrer">@vdm.co</a>
+    </footer>
+
+  </main>
+
+<script>
+/* ═══════════════════════════════════════════════════════════════════
+   RENDER — tidak perlu diubah
+   ═══════════════════════════════════════════════════════════════════ */
+(function () {
+  "use strict";
+
+  const IKON = {
+    shopee: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+               <path d="M5.5 8h13l-1.1 12.2a1.6 1.6 0 0 1-1.6 1.3H8.2a1.6 1.6 0 0 1-1.6-1.3L5.5 8Z"/>
+               <path d="M9 8V6.2a3 3 0 0 1 6 0V8"/>
+             </svg>`,
+    tiktok: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+               <circle cx="9.5" cy="20" r="1.1"/><circle cx="17.5" cy="20" r="1.1"/>
+               <path d="M3 4h2.2l2.3 10.6h10.9L21 7H6.1"/>
+             </svg>`,
+    instagram: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+               <rect x="3.2" y="3.2" width="17.6" height="17.6" rx="5.2"/>
+               <circle cx="12" cy="12" r="4"/>
+               <circle cx="17.1" cy="6.9" r="1.05" fill="currentColor" stroke="none"/>
+             </svg>`,
+    link: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+               <path d="M10 13.5a4 4 0 0 0 5.7 0l2.6-2.6a4 4 0 0 0-5.7-5.7L11.3 6.5"/>
+               <path d="M14 10.5a4 4 0 0 0-5.7 0l-2.6 2.6a4 4 0 0 0 5.7 5.7l1.3-1.3"/>
+             </svg>`
+  };
+
+  const PANAH = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                   <path d="M7 17 17 7"/><path d="M9 7h8v8"/>
+                 </svg>`;
+
+  const $ = (s) => document.querySelector(s);
+
+  /* ---------- teks ---------- */
+  document.title          = KONFIG.nama + " — Official Links";
+  $("#nama").textContent  = KONFIG.nama;
+  $("#handle").textContent = KONFIG.handle;
+  $("#bio").textContent   = KONFIG.bio;
+
+  /* ---------- logo ---------- */
+  const logoEl = $("#logo");
+  logoEl.alt = "Logo " + KONFIG.nama;
+  logoEl.onerror = function () {
+    if (this.src === CADANGAN.logo) return;
+    this.src = CADANGAN.logo;
+  };
+  logoEl.src = GAMBAR.logo || CADANGAN.logo;
+
+  /* ---------- banner ---------- */
+  const slidesWrap = $("#slides");
+  const dotsWrap   = $("#dots");
+  let idx = 0, timer = null;
+
+  KONFIG.banner.forEach((b, i) => {
+    const tag = b.link ? "a" : "div";
+    const el  = document.createElement(tag);
+    el.className = "slide" + (i === 0 ? " aktif" : "") + ((b.judul || b.teks) ? " punya-cap" : "");
+    el.setAttribute("aria-hidden", i === 0 ? "false" : "true");
+
+    if (b.link) {
+      el.href = b.link;
+      el.target = "_blank";
+      el.rel = "noopener noreferrer";
+      el.setAttribute("aria-label", b.judul || "Buka banner " + (i + 1));
+    }
+
+    const cap = (b.judul || b.teks)
+      ? `<div class="cap">
+           ${b.judul ? `<h3>${b.judul}</h3>` : ""}
+           ${b.teks  ? `<p>${b.teks}</p>`   : ""}
+         </div>`
+      : "";
+
+    el.innerHTML =
+      `<img alt="${b.judul || "Banner " + (i + 1)}" draggable="false" />` + cap;
+
+    const img = el.querySelector("img");
+    const fallback = CADANGAN.banner[i] || CADANGAN.banner[0];
+    img.onerror = function () {
+      if (this.src === fallback) return;
+      this.src = fallback;
+    };
+    img.src = b.gambar || fallback;
+
+    slidesWrap.appendChild(el);
+
+    const dot = document.createElement("button");
+    dot.type = "button";
+    dot.className = "dot" + (i === 0 ? " on" : "");
+    dot.setAttribute("role", "tab");
+    dot.setAttribute("aria-label", "Ke slide " + (i + 1));
+    dot.addEventListener("click", () => { go(i); restart(); });
+    dotsWrap.appendChild(dot);
+  });
+
+  const slides = Array.from(slidesWrap.children);
+  const dots   = Array.from(dotsWrap.children);
+
+  function go(n) {
+    idx = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => {
+      s.classList.toggle("aktif", i === idx);
+      s.setAttribute("aria-hidden", i === idx ? "false" : "true");
+    });
+    dots.forEach((d, i) => d.classList.toggle("on", i === idx));
+  }
+  const next = () => go(idx + 1);
+  const prev = () => go(idx - 1);
+
+  function start() {
+    const reduce = window.matchMedia
+      ? window.matchMedia("(prefers-reduced-motion: reduce)").matches
+      : false;
+    if (reduce) return;
+    timer = setInterval(next, KONFIG.bannerDelay || 4500);
+  }
+  function restart() { clearInterval(timer); start(); }
+
+  $("#next").addEventListener("click", () => { next(); restart(); });
+  $("#prev").addEventListener("click", () => { prev(); restart(); });
+
+  const banner = $("#banner");
+  banner.addEventListener("mouseenter", () => clearInterval(timer));
+  banner.addEventListener("mouseleave", () => restart());
+  banner.addEventListener("focusin",  () => clearInterval(timer));
+  banner.addEventListener("focusout", () => restart());
+
+  /* swipe / drag di layar sentuh */
+  let x0 = null;
+  banner.addEventListener("pointerdown", (e) => { x0 = e.clientX; });
+  banner.addEventListener("pointerup", (e) => {
+    if (x0 === null) return;
+    const dx = e.clientX - x0;
+    if (Math.abs(dx) > 40) { dx < 0 ? next() : prev(); restart(); }
+    x0 = null;
+  });
+  banner.addEventListener("pointercancel", () => { x0 = null; });
+
+  /* keyboard */
+  document.addEventListener("keydown", (e) => {
+    if (e.key === "ArrowRight") { next(); restart(); }
+    if (e.key === "ArrowLeft")  { prev(); restart(); }
+  });
+
+  go(0);
+  start();
+
+  /* ---------- daftar link ---------- */
+  const linksWrap = $("#links");
+
+  KONFIG.links.forEach((l, i) => {
+    const a = document.createElement("a");
+    a.className = "link";
+    a.href = l.url;
+    a.target = "_blank";
+    a.rel = "noopener noreferrer";
+    a.style.animationDelay = (0.18 + i * 0.09) + "s";
+
+    a.innerHTML = `
+      <span class="ico" aria-hidden="true">${IKON[l.ikon] || IKON.link}</span>
+      <span class="txt">
+        ${l.label ? `<span class="label">${l.label}</span>` : ""}
+        <span class="title">${l.judul}</span>
+        ${l.deskripsi ? `<span class="desc">${l.deskripsi}</span>` : ""}
+      </span>
+      <span class="arrow" aria-hidden="true">${PANAH}</span>
+    `;
+
+    linksWrap.appendChild(a);
+  });
+})();
+</script>
+</body>
+</html>
