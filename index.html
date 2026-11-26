@@ -345,6 +345,82 @@
   @media (prefers-reduced-motion:reduce){
     *{ animation:none !important; transition-duration:.01ms !important; }
   }
+  /* ══════════════ MAP ANIMASI OFFLINE STORE ══════════════ */
+  .map-card{
+    display:block;
+    width:100%;
+    margin-top:20px;
+    border:1px solid rgba(255,255,255,.16);
+    border-radius:14px;
+    background:#0a0a0a;
+    overflow:hidden;
+    text-decoration:none;
+    color:#ffffff;
+    transition:border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+  }
+  .map-card:hover{
+    border-color:rgba(255,255,255,.45);
+    transform:translateY(-2px);
+    box-shadow:0 16px 40px rgba(0,0,0,.6);
+  }
+  .map-visual{
+    position:relative;
+    width:100%;
+    height:190px;
+    background:#080808;
+    overflow:hidden;
+    border-bottom:1px solid rgba(255,255,255,.16);
+  }
+  .map-svg{
+    width:100%; height:100%; display:block;
+    transition:transform .6s cubic-bezier(.2,.8,.2,1);
+  }
+  .map-card:hover .map-svg{ transform:scale(1.04); }
+  .map-tag{
+    position:absolute; top:12px; left:12px;
+    padding:4px 9px;
+    border-radius:999px;
+    background:rgba(5,5,5,.78);
+    border:1px solid rgba(255,255,255,.22);
+    backdrop-filter:blur(6px);
+    font-family:ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size:9px; letter-spacing:.22em; text-transform:uppercase;
+    color:rgba(255,255,255,.85);
+  }
+  .map-pin{
+    position:absolute; left:50%; top:50%;
+    transform:translate(-50%, -50%);
+    pointer-events:none;
+  }
+  .map-radar{
+    position:absolute; left:50%; top:50%;
+    width:18px; height:18px;
+    border-radius:50%;
+    border:1.5px solid rgba(255,255,255,.85);
+    transform:translate(-50%, -50%);
+    animation:radar 2.4s cubic-bezier(0,.5,.5,1) infinite;
+  }
+  .map-radar.r2{ animation-delay:1.2s; }
+  @keyframes radar{
+    0%  { width:14px; height:14px; opacity:.9; }
+    100%{ width:96px; height:96px; opacity:0; }
+  }
+  .map-dot{
+    position:relative; z-index:2;
+    width:14px; height:14px;
+    border-radius:50%;
+    background:#fff;
+    border:3px solid #050505;
+    box-shadow:0 0 0 1.5px #fff, 0 4px 14px rgba(0,0,0,.8);
+  }
+  .map-info{
+    padding:15px 18px;
+    display:flex; align-items:center; justify-content:space-between; gap:14px;
+  }
+  .map-addr{
+    font-size:12.5px; line-height:1.5; color:rgba(255,255,255,.62);
+    margin-top:3px;
+  }
 </style>
 
 <script>
@@ -474,6 +550,46 @@ const CADANGAN = {
 
     <!-- DAFTAR LINK -->
     <section class="links" id="links" aria-label="Daftar link resmi"></section>
+
+    <!-- Animasi Maps Offline Store -->
+    <a class="map-card" href="https://maps.app.goo.gl/Aej4JXWH5p96F6xt9" target="_blank" rel="noopener noreferrer" aria-label="Buka lokasi Offline Store di Google Maps">
+      <div class="map-visual">
+        <svg class="map-svg" viewBox="0 0 600 220" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+          <rect width="600" height="220" fill="#080808"/>
+          <rect x="40" y="20" width="90" height="55" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="160" y="25" width="110" height="50" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="330" y="20" width="100" height="55" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="460" y="25" width="100" height="50" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="40" y="125" width="105" height="65" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="180" y="130" width="95" height="60" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="330" y="125" width="110" height="65" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <rect x="470" y="130" width="90" height="60" rx="4" fill="#111" stroke="rgba(255,255,255,0.07)"/>
+          <path d="M0 100 L600 100" stroke="rgba(255,255,255,0.22)" stroke-width="6"/>
+          <path d="M0 100 L600 100" stroke="rgba(255,255,255,0.08)" stroke-width="1" stroke-dasharray="8 8"/>
+          <path d="M300 0 L300 220" stroke="rgba(255,255,255,0.20)" stroke-width="5"/>
+          <path d="M145 0 L145 220" stroke="rgba(255,255,255,0.10)" stroke-width="2.5"/>
+          <path d="M445 0 L445 220" stroke="rgba(255,255,255,0.10)" stroke-width="2.5"/>
+          <text x="24" y="92" fill="rgba(255,255,255,0.32)" font-family="monospace" font-size="9" letter-spacing="2">JL. CIBADUYUT RAYA</text>
+          <text x="312" y="114" fill="rgba(255,255,255,0.45)" font-family="monospace" font-size="9" letter-spacing="2">M SQUARE • RUKO A12</text>
+        </svg>
+        <div class="map-tag">OFFLINE STORE • BANDUNG</div>
+        <div class="map-pin">
+          <div class="map-radar"></div>
+          <div class="map-radar r2"></div>
+          <div class="map-dot"></div>
+        </div>
+      </div>
+      <div class="map-info">
+        <div class="txt">
+          <span class="label">Google Maps</span>
+          <span class="title">Apartemen M Square — Ruko A12</span>
+          <span class="map-addr">Cibaduyut, Kec. Bojongloa Kidul, Kota Bandung, Jawa Barat 40236</span>
+        </div>
+        <span class="arrow" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M9 7h8v8"/></svg>
+        </span>
+      </div>
+    </a>
 
     <!-- FOOTER -->
     <footer class="foot">
@@ -657,4 +773,3 @@ const CADANGAN = {
 </script>
 </body>
 </html>
-
